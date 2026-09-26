@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>nbOS Launcher Privacy Policy</title>
+<style>
+:root { color-scheme: dark light; --bg:#11121b; --fg:#e4e4ee; --muted:#9698aa; --accent:#be96ff; --line:#2c2e40; }
+@media (prefers-color-scheme: light) { :root { --bg:#f6f6fa; --fg:#1b1c26; --muted:#5a5c6e; --accent:#6a3fc8; --line:#d9d9e4; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 ui-monospace,"JetBrains Mono","Noto Sans Mono",monospace; }
+main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+header { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:.5rem; border-bottom: 1px solid var(--line); margin-bottom: 2rem; padding-bottom: .75rem; }
+header a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav a { color: var(--muted); margin-left: 1rem; font-size: .9rem; }
+h1 { font-size: 1.6rem; line-height: 1.25; } h2 { font-size: 1.2rem; margin-top: 2.2rem; } h3 { font-size: 1.05rem; }
+a { color: var(--accent); } code { font-size: .92em; color: var(--muted); }
+blockquote { margin: 1rem 0; padding-left: 1rem; border-left: 3px solid var(--line); color: var(--muted); }
+li { margin: .35rem 0; } footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+<header><a href="../">nbsystems.dev</a><nav><a href="../privacy/">Privacy</a><a href="../licenses/">Licenses</a></nav></header>
+<h1>nbOS Launcher Privacy Policy</h1>
+<p>Last updated: 2026-09-26</p>
+<p>This policy describes nbOS 0.2.0-beta.8 and later (the O1 Home). Older versions that may still be installed are covered
+in the section "Earlier versions" below.</p>
+<p>nbOS is an Android launcher. It has no accounts, ads, developer-operated analytics or developer-operated data collection.
+nbOS does not send your data to the developer.</p>
+<h2>Data used by the app</h2>
+<ul>
+<li><strong>Approximate location</strong> is used to request local weather, including a short-term (15-minute) precipitation forecast,
+  from <a href="https://open-meteo.com/">Open-Meteo</a>. After you grant location permission, nbOS requests weather automatically
+  whenever the Home screen is shown and about every 20 minutes while it stays open (once a minute until a first forecast
+  arrives). The provider receives the request coordinates and ordinary network metadata, including your IP address.
+  Weather responses are cached on the device.</li>
+<li><strong>Calendar access</strong> lets nbOS show upcoming events and a countdown on the Home screen. By default nbOS reads all
+  calendars that are visible on the device, including calendars added later; in settings you can limit it to selected
+  calendars. To offer that choice, nbOS also reads each calendar's name and its account name and type, which can be an
+  email address. Calendar data stays on the device and is not sent to the weather service.</li>
+<li><strong>Installed apps</strong> are listed to provide the app drawer, search and favorites. Battery state is displayed locally.</li>
+<li><strong>Timer:</strong> when you set a timer on the clock ring, nbOS asks your clock app to start it (Android's set-alarm permission)
+  with the duration and the label "nbOS", and stores only the end time on the device to show the remaining time.</li>
+<li><strong>Widgets</strong> you add are hosted by nbOS. Android passes the widget's ID and size to the app that provides the widget.</li>
+<li><strong>Files and folders you pick</strong> through Android's system picker are used for wallpapers, theme wallpaper folders and
+  manual configuration import/export.</li>
+<li><strong>Preferences</strong> such as favorites and their order, widget bindings and sizes, wallpaper choices and crops, theme and
+  motion settings, permission history and weather preferences are stored locally. Android cloud backup and device
+  transfer are disabled for nbOS's app data. When nbOS sets your system wallpaper, the image is handed to Android, which
+  may include the system wallpaper in its own backup; that copy is managed by Android, not by nbOS.</li>
+</ul>
+<p>Night phosphor, idle drift and all other visual features run entirely on the device.</p>
+<h3>Configuration export</h3>
+<p>Export writes an unencrypted JSON file to the location you choose. It contains your favorites (app package names),
+selected calendar IDs, preferences and any retained Todo, Notes and folder content (see below). Timer data, the weather
+cache, widget bindings and wallpaper images are not exported. If you save the file to a cloud document provider, that
+provider stores it under its own terms.</p>
+<h2>Data kept from earlier versions</h2>
+<p>Removing the Todo, Notes, Habits and folder features did not delete data you saved with them. Previously saved tasks,
+notes and folder assignments stay stored on the device and are still included in configuration export for
+compatibility; nbOS no longer synchronizes them. Exports can therefore contain personal content — store them securely.
+Previously selected sync folders, their external files and granted folder permissions are left unchanged.</p>
+<h2>Retention and deletion</h2>
+<p>App data stays on your device until you change it, clear nbOS's app data, or uninstall nbOS. Exported files, images in
+storage you chose and the system wallpaper (including any Android wallpaper backup) remain under your control and are not
+removed with nbOS's app data. nbOS has no server-side account or copy of your data to delete.</p>
+<h2>Third-party services</h2>
+<p>Open-Meteo's <a href="https://open-meteo.com/en/terms">terms</a> state that technical logs can contain IP addresses and coordinates
+and are deleted after 90 days; nbOS cannot delete provider logs.</p>
+<p>nbOS uses AndroidX EmojiCompat, which can ask the device's system font provider (usually Google Play services) for an
+up-to-date emoji font. That request is handled by the provider under its own privacy terms.</p>
+<p>Links in settings (privacy policy, licenses and the optional Ko-fi support page) open in your browser. Apps, widgets,
+browsers, websites and document providers you use with nbOS have their own privacy practices.</p>
+<h2>Earlier versions (0.2.0-beta.7 and older)</h2>
+<p>Earlier versions additionally offered optional features that are removed in the current version:</p>
+<ul>
+<li><strong>Todo and Notes sync</strong> through a folder you selected. Before replacing a synced document, nbOS kept app-private
+  recovery snapshots of the pending and previous content; they stay on the device until overwritten, until app data is
+  cleared or until nbOS is uninstalled.</li>
+<li><strong>Herdr</strong> requests went only to the snapshot URL you configured. Later releases required HTTPS for it; 0.1.0-beta also
+  allowed plain HTTP. Other integrations such as Tailscale or Termux were configured by you and have their own privacy
+  practices.</li>
+<li><strong>Device status</strong> such as memory, storage, network address and uptime was displayed locally.</li>
+<li><strong>Google ML Kit</strong> was used for the optional experimental depth-clock cutout (subject segmentation; the model could be
+  downloaded through Google Play services) and, in versions with desktop approval, for scanning the pairing QR code with
+  the camera (barcode scanning). Images and camera frames were processed on the device. The ML Kit SDK can collect
+  device and app information, device and per-installation identifiers, performance metrics and feature/error events for
+  diagnostics and usage analytics (see Google's <a href="https://developers.google.com/ml-kit/android-data-disclosure">ML Kit Android data
+  disclosure</a>). nbOS cannot delete data already held by
+  Google.</li>
+<li>Versions before 0.2.0-beta.6 could optionally be paired with a user-controlled nbshell desktop for <strong>biometric
+  approval</strong> of desktop sign-in requests. Pairing sent the phone model, a random device ID and a public signing key to
+  the desktop address in the QR code, and a foreground service then checked only that desktop for pending requests.
+  Biometric data stayed with Android.</li>
+</ul>
+<p>Current versions clean up the retired desktop approval locally on startup (old pairing preferences, key alias and
+notification channel); no request is sent to a desktop.</p>
+<h2>Contact</h2>
+<ul>
+<li>Privacy questions or requests: <a href="mailto:privacy@nbsystems.dev">privacy@nbsystems.dev</a></li>
+<li>Product support: <a href="mailto:support@nbsystems.dev">support@nbsystems.dev</a></li>
+<li>Security reports (please not in public issues): <a href="mailto:security@nbsystems.dev">security@nbsystems.dev</a></li>
+</ul>
+<footer>Contact: <a href="mailto:support@nbsystems.dev">support@nbsystems.dev</a> ·
+privacy: <a href="mailto:privacy@nbsystems.dev">privacy@nbsystems.dev</a> ·
+security: <a href="mailto:security@nbsystems.dev">security@nbsystems.dev</a></footer>
+</main>
+</body>
+</html>
