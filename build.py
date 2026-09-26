@@ -12,8 +12,17 @@ ROOT = pathlib.Path(__file__).parent
 OUT = ROOT / "docs"
 
 PAGES = {
-    "privacy": ("src/privacy.md", "nbOS Launcher Privacy Policy"),
-    "licenses": ("src/licenses.md", "nbOS visual asset licenses"),
+    "privacy": (["src/privacy.md"], "nbOS Launcher Privacy Policy"),
+    "licenses": (["src/licenses.md", "src/third-party.md", "src/third-party-mit.md"], "nbOS licenses"),
+}
+
+# Repository-relative links in the copied notices point into the (private) source repository; on the site they
+# refer to sections of the same page.
+LINK_REWRITES = {
+    "[`LICENSES/THIRD_PARTY_MIT.md`](LICENSES/THIRD_PARTY_MIT.md)": "the Third-party MIT licenses section below",
+    "[`ASSET_LICENSES.md`](ASSET_LICENSES.md)": "the Visual asset licenses section above",
+    "[`THIRD_PARTY.md`](../THIRD_PARTY.md)": "the Third-party components section above",
+    "[`LICENSE`](../LICENSE)": "the nbOS MIT license",
 }
 
 STYLE = """
@@ -59,7 +68,7 @@ INDEX = """<h1>nbOS Launcher</h1>
 favorites and native Android widgets. Currently in closed beta on Google Play.</p>
 <ul>
 <li><a href="privacy/">Privacy policy</a></li>
-<li><a href="licenses/">Visual asset licenses</a></li>
+<li><a href="licenses/">Licenses (visual assets and third-party notices)</a></li>
 </ul>
 """
 
@@ -68,8 +77,11 @@ def main() -> None:
     OUT.mkdir(exist_ok=True)
     (OUT / ".nojekyll").write_text("")
     (OUT / "index.html").write_text(page("nbsystems.dev", INDEX))
-    for slug, (src, title) in PAGES.items():
-        body = markdown.markdown((ROOT / src).read_text(), extensions=["sane_lists"])
+    for slug, (sources, title) in PAGES.items():
+        text = "\n\n".join((ROOT / src).read_text() for src in sources)
+        for old, new in LINK_REWRITES.items():
+            text = text.replace(old, new)
+        body = markdown.markdown(text, extensions=["sane_lists"])
         (OUT / slug).mkdir(exist_ok=True)
         (OUT / slug / "index.html").write_text(page(title, body, up="../"))
         print("built", slug)
