@@ -14,6 +14,8 @@ OUT = ROOT / "docs"
 PAGES = {
     "privacy": (["src/privacy.md"], "nbOS Launcher Privacy Policy"),
     "licenses": (["src/licenses.md", "src/third-party.md", "src/third-party-mit.md"], "nbOS licenses"),
+    "nerdbase-backup": (["src/nerdbase-backup.md"], "nerdbase-backup"),
+    "nerdbase-backup-privacy": (["src/nerdbase-backup-privacy.md"], "nerdbase-backup Privacy Policy"),
 }
 
 # Repository-relative links in the copied notices point into the (private) source repository; on the site they
@@ -41,7 +43,14 @@ li { margin: .35rem 0; } footer { margin-top: 3rem; color: var(--muted); font-si
 """
 
 
-def page(title: str, body: str, up: str = "") -> str:
+def page(title: str, body: str, up: str = "", drive: bool = False) -> str:
+    navigation = (f'<a href="{up}nerdbase-backup/">About</a><a href="{up}nerdbase-backup-privacy/">Privacy</a>'
+                  if drive else f'<a href="{up}privacy/">Privacy</a><a href="{up}licenses/">Licenses</a>')
+    contact = ('Maintainer: <a href="https://github.com/nerdislb">nerdislb</a> · '
+               '<a href="https://github.com/nerdislb/nbsystems.dev/issues">General questions</a>'
+               if drive else 'Contact: <a href="mailto:support@nbsystems.dev">support@nbsystems.dev</a> ·\n'
+               'privacy: <a href="mailto:privacy@nbsystems.dev">privacy@nbsystems.dev</a> ·\n'
+               'security: <a href="mailto:security@nbsystems.dev">security@nbsystems.dev</a>')
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -52,11 +61,9 @@ def page(title: str, body: str, up: str = "") -> str:
 </head>
 <body>
 <main>
-<header><a href="{up or './'}">nbsystems.dev</a><nav><a href="{up}privacy/">Privacy</a><a href="{up}licenses/">Licenses</a></nav></header>
+<header><a href="{up or './'}">nbsystems.dev</a><nav>{navigation}</nav></header>
 {body}
-<footer>Contact: <a href="mailto:support@nbsystems.dev">support@nbsystems.dev</a> ·
-privacy: <a href="mailto:privacy@nbsystems.dev">privacy@nbsystems.dev</a> ·
-security: <a href="mailto:security@nbsystems.dev">security@nbsystems.dev</a></footer>
+<footer>{contact}</footer>
 </main>
 </body>
 </html>
@@ -83,7 +90,7 @@ def main() -> None:
             text = text.replace(old, new)
         body = markdown.markdown(text, extensions=["sane_lists"])
         (OUT / slug).mkdir(exist_ok=True)
-        (OUT / slug / "index.html").write_text(page(title, body, up="../"))
+        (OUT / slug / "index.html").write_text(page(title, body, up="../", drive=slug.startswith("nerdbase-backup")))
         print("built", slug)
 
 

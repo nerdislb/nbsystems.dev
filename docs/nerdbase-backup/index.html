@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>nerdbase-backup</title>
+<style>
+:root { color-scheme: dark light; --bg:#11121b; --fg:#e4e4ee; --muted:#9698aa; --accent:#be96ff; --line:#2c2e40; }
+@media (prefers-color-scheme: light) { :root { --bg:#f6f6fa; --fg:#1b1c26; --muted:#5a5c6e; --accent:#6a3fc8; --line:#d9d9e4; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 ui-monospace,"JetBrains Mono","Noto Sans Mono",monospace; }
+main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+header { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:.5rem; border-bottom: 1px solid var(--line); margin-bottom: 2rem; padding-bottom: .75rem; }
+header a { color: var(--accent); text-decoration: none; font-weight: 700; }
+nav a { color: var(--muted); margin-left: 1rem; font-size: .9rem; }
+h1 { font-size: 1.6rem; line-height: 1.25; } h2 { font-size: 1.2rem; margin-top: 2.2rem; } h3 { font-size: 1.05rem; }
+a { color: var(--accent); } code { font-size: .92em; color: var(--muted); }
+blockquote { margin: 1rem 0; padding-left: 1rem; border-left: 3px solid var(--line); color: var(--muted); }
+li { margin: .35rem 0; } footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+<header><a href="../">nbsystems.dev</a><nav><a href="../nerdbase-backup/">About</a><a href="../nerdbase-backup-privacy/">Privacy</a></nav></header>
+<h1>nerdbase-backup</h1>
+<p><strong>Personal Google Drive access with rclone.</strong></p>
+<p>nerdbase-backup is a private, owner-operated desktop integration. It uses
+<a href="https://rclone.org/">rclone</a> to make the owner's Google Drive available as a
+folder in a local file manager. Files are downloaded on demand, cached locally,
+and uploaded in the background after the owner saves or copies files into the mounted folder.
+A local status display reports background uploads and queued files.</p>
+<p>The OAuth client is intended solely for the maintainer's own Google account.
+Other users are not supported and should not authorize it.</p>
+<p>Despite its name, this is a live mount, not a backup: deletions and overwrites
+in the mounted folder are applied to Google Drive.</p>
+<p>This is not a public cloud-storage service. There is no account registration,
+developer-operated file server, advertising, or analytics in the integration.
+It is not affiliated with or endorsed by Google or the rclone project.</p>
+<h2>Google access</h2>
+<p>The integration requests Google Drive access so the owner can list, open,
+create, change, move and delete their existing files and folders. The narrower
+permission for files created by the app would not provide access to the owner's
+existing Drive library. Google authorization takes place in the browser; the
+integration does not receive the owner's Google password.</p>
+<h2>Privacy and terms</h2>
+<ul>
+<li><a href="../nerdbase-backup-privacy/">Privacy policy</a></li>
+<li>Access can be revoked in <a href="https://myaccount.google.com/connections">Google Account connections</a>.
+  Complete or preserve pending uploads before revoking access or removing the cache.</li>
+<li>Personal use only; no hosted storage, availability commitment or support SLA
+  is provided. Keep independent backups of important files.</li>
+<li>Google Drive remains subject to <a href="https://policies.google.com/terms">Google's terms</a>.
+  rclone is distributed under its <a href="https://rclone.org/licence/">MIT license</a>.</li>
+<li>Maintainer: <a href="https://github.com/nerdislb">nerdislb on GitHub</a>.
+  General questions can be raised in the
+  <a href="https://github.com/nerdislb/nbsystems.dev/issues">site repository</a>.
+  For private matters, use the support email shown on the Google consent screen.
+  Do not post credentials or private file information in public issues.</li>
+</ul>
+<footer>Maintainer: <a href="https://github.com/nerdislb">nerdislb</a> · <a href="https://github.com/nerdislb/nbsystems.dev/issues">General questions</a></footer>
+</main>
+</body>
+</html>
