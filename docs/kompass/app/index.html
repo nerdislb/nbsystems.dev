@@ -1,0 +1,70 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palliativkompass – die App für iPhone und Android</title>
+<meta name="description" content="Informationen rund um die Palliativversorgung, ein persönliches Tagebuch, Medikamente und Termine. Kostenlos, ohne Konto, alles bleibt auf Ihrem Gerät. Inhalte von palliativkompass.at.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Palliativkompass – die App">
+<meta property="og:description" content="Informationen, Tagebuch, Medikamente und Termine. Kostenlos für iPhone und Android, ohne Konto.">
+<meta property="og:url" content="https://nerdislb.github.io/nbsystems.dev/kompass/app/">
+<meta property="og:image" content="https://nerdislb.github.io/nbsystems.dev/kompass/app/teilen.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_AT">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{color-scheme:light dark;--bg:#10181a;--fg:#eef3ef;--muted:#b4c4bc;--accent:#8fd9bd;--card:#1b2a2c;--btn:#8fd9bd;--btnfg:#10181a}
+@media(prefers-color-scheme:light){:root{--bg:#f4f1e8;--fg:#17261f;--muted:#4b5f55;--accent:#0b5a47;--card:#e6e9df;--btn:#0b5a47;--btnfg:#f4f1e8}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:1.0625rem/1.65 system-ui,sans-serif}main{max-width:40rem;margin:auto;padding:2rem 1.25rem 4rem}
+header{display:flex;align-items:center;gap:1rem}header img{width:4rem;height:4rem;border-radius:.9rem}
+a{color:var(--accent);overflow-wrap:anywhere}a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+h1{font-size:2rem;line-height:1.2;margin:1.5rem 0 .75rem}
+.stores{display:flex;flex-direction:column;gap:1rem;margin:2rem 0}
+.store{display:block;padding:1.1rem 1.4rem;border-radius:1rem;text-decoration:none;background:var(--card);color:var(--fg);border:2px solid transparent}
+.store strong{display:block;font-size:1.2rem}.store span{color:var(--muted)}
+.store.mine{background:var(--btn);color:var(--btnfg)}.store.mine span{color:var(--btnfg);opacity:.85}
+.store:focus-visible{outline:3px solid var(--fg);outline-offset:4px}
+.hint{font-size:.9rem;color:var(--muted);margin:.25rem 0 0}
+.qr{display:none;margin:2rem 0;padding:1.25rem;background:var(--card);border-radius:1rem;align-items:center;gap:1.25rem}
+.qr img{width:9rem;height:9rem;background:#fff;padding:.5rem;border-radius:.5rem}
+.desktop .qr{display:flex}
+ul{padding-left:1.2rem}li{margin:.4rem 0}
+.note{padding:1rem;background:var(--card);border-left:4px solid var(--accent)}
+footer{margin-top:3rem;color:var(--muted);font-size:.95rem}
+</style></head>
+<body><main>
+<header><img src="../app-icon.png" alt=""><strong>Palliativkompass</strong></header>
+<h1>Die App zum Palliativkompass</h1>
+<p>Verständliche Informationen rund um die Palliativversorgung, ein persönliches Tagebuch, Ihre Medikamente und Termine. Für Menschen mit einer lebensbegrenzenden Erkrankung und ihre An- und Zugehörigen.</p>
+
+<div class="stores" id="stores">
+<a class="store" id="ios" href="https://apps.apple.com/at/app/palliativkompass/id6823980153"><strong>iPhone: im App Store laden</strong><span>kostenlos, ab iOS 17</span></a>
+<a class="store" id="android" href="../android/"><strong>Android: herunterladen und installieren</strong><span>kostenlos, mit Anleitung in Bildern</span></a>
+</div>
+<p class="hint">Auf dem Handy heißt die App kurz „Kompass“.</p>
+
+<div class="qr"><img src="qr-app.svg" alt="QR-Code zu dieser Seite"><p>Sie sind am Computer? Scannen Sie den Code mit der Kamera Ihres Handys, dann öffnet sich diese Seite dort.</p></div>
+
+<h2>Was die App bietet</h2>
+<ul>
+<li><strong>Wissen:</strong> die Beiträge von palliativkompass.at, auch ohne Internet lesbar</li>
+<li><strong>Tagebuch:</strong> Beschwerden, Befinden und Vitalwerte festhalten und als PDF zum Arztgespräch mitnehmen</li>
+<li><strong>Medikamente und Termine:</strong> mit Erinnerungen auf Wunsch</li>
+<li><strong>Hilfe jetzt:</strong> wichtige Nummern immer griffbereit</li>
+</ul>
+<p class="note">Kostenlos, ohne Konto und ohne Werbung. Ihre Einträge bleiben auf Ihrem Gerät. Die App ersetzt keine ärztliche oder pflegerische Beratung; im Notfall wählen Sie 144.</p>
+
+<footer>Inhalte: <a href="https://palliativkompass.at">palliativkompass.at</a> · <a href="../support.de/">Hilfe und Kontakt</a> · <a href="../privacy.de/">Datenschutz</a></footer>
+</main>
+<script>
+(function(){
+  var ua = navigator.userAgent || "";
+  var touchMac = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;   // iPadOS reports itself as a Mac
+  var mine = /iPhone|iPad|iPod/.test(ua) || touchMac ? "ios" : /Android/.test(ua) ? "android" : null;
+  if (mine) {
+    var el = document.getElementById(mine);
+    el.classList.add("mine");
+    document.getElementById("stores").prepend(el);
+  } else {
+    document.documentElement.classList.add("desktop");
+  }
+})();
+</script>
+</body></html>
