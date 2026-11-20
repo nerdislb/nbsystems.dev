@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bernhard Slatinsek · Webseiten und iPhone-Apps aus Graz</title>
+<meta name="description" content="Webseiten für Betriebe und Vereine, Apps für iPhone und Android. Von einer Person in Graz, mit Fixpreis und ohne Agentur-Umwege.">
+<style>
+@font-face{font-family:"Literata";src:url(fonts/Literata.woff2) format("woff2");font-weight:200 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Literata";src:url(fonts/Literata-Italic.woff2) format("woff2");font-weight:200 900;font-style:italic;font-display:swap}
+
+:root{
+  --paper:#fbfaf6; --sheet:#ffffff; --ink:#1c2333; --ink-2:#4b5366; --ink-3:#737a8a;
+  --rule:#e3e0d6; --pencil:#b2331f;
+  --serif:"Literata",Georgia,serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.25rem/1.68 var(--serif);font-optical-sizing:auto;font-feature-settings:"kern","liga","onum"}
+a{color:inherit;text-decoration-color:var(--pencil);text-decoration-thickness:1.5px;text-underline-offset:.2em}
+a:hover{color:var(--pencil)}
+:focus-visible{outline:2px solid var(--pencil);outline-offset:3px}
+.todo{background:#fff2a8;color:#5a4a00;font-size:.8em;font-style:normal;padding:.05em .35em;border-radius:3px}
+
+/* Blatt mit Randspalte für Notizen */
+.letter{max-width:58rem;margin:0 auto;padding:clamp(1.5rem,5vw,4.5rem) clamp(1.25rem,4vw,3rem) 3rem}
+.row{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,36rem);column-gap:3rem;justify-content:center}
+.row > *{grid-column:2}
+.row > .note{grid-column:1;grid-row:1;justify-self:end;text-align:right;margin:.35rem 0 0;max-width:12rem;font-style:italic;font-size:.95rem;line-height:1.45;color:var(--pencil)}
+.row > .note::after{content:" ⟶";font-style:normal}
+
+/* Briefkopf */
+.head{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;align-items:flex-start;padding-bottom:1.3rem;border-bottom:1px solid var(--ink);margin-bottom:clamp(2.5rem,7vw,5rem)}
+.head .from{font-size:1rem;line-height:1.45}
+.head .from b{display:block;font-size:1.45rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.15rem}
+.head nav{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.95rem;padding-top:.5rem}
+.head nav a{text-decoration:none;color:var(--ink-2)}
+.head nav a:hover{color:var(--pencil)}
+
+.place{text-align:right;color:var(--ink-2);margin:0 0 2rem;font-size:1.05rem}
+.subject{font-weight:650;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.2;letter-spacing:-.015em;margin:0 0 2.2rem}
+.subject span{font-weight:400;font-style:italic}
+p{margin:0 0 1.15em}
+.u{text-decoration:underline wavy var(--pencil);text-decoration-thickness:1.4px;text-underline-offset:.28em;text-decoration-skip-ink:none}
+
+ul.plain{margin:0 0 1.15em;padding:0;list-style:none}
+ul.plain li{padding-left:1.4rem;position:relative;margin:.25rem 0}
+ul.plain li::before{content:"–";position:absolute;left:0;color:var(--ink-3)}
+ul.plain s{text-decoration-color:var(--pencil);text-decoration-thickness:2px}
+
+.sign{margin-top:2.4rem}
+.sign .name{font-style:italic;font-size:2.2rem;line-height:1.1;letter-spacing:-.01em;margin:.4rem 0 .2rem;font-weight:350}
+.sign small{display:block;color:var(--ink-3);font-size:1rem}
+
+.ps{margin-top:2.6rem;padding-top:1.4rem;border-top:1px dashed var(--rule)}
+.ps b{font-weight:650}
+
+/* Anlagen */
+.annex{margin-top:clamp(4rem,9vw,6.5rem)}
+.annex h2{font-size:1rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin:0 0 .3rem}
+.annex h3{font-size:clamp(1.6rem,3.2vw,2.1rem);font-weight:500;line-height:1.2;letter-spacing:-.015em;margin:0 0 1.6rem}
+table{width:100%;border-collapse:collapse;font-feature-settings:"lnum","tnum";margin-bottom:1rem}
+th,td{text-align:left;vertical-align:top;padding:.9rem 0;border-top:1px solid var(--rule)}
+tr:first-child th,tr:first-child td{border-top:1px solid var(--ink)}
+th{font-weight:600;padding-right:2rem}
+th small{display:block;font-weight:400;color:var(--ink-2);font-size:.95rem;line-height:1.45;margin-top:.2rem}
+td.p{text-align:right;white-space:nowrap;font-size:1.3rem}
+td.p small{font-size:.9rem;color:var(--ink-3)}
+.fine{font-size:1rem;color:var(--ink-2)}
+
+.samples{display:grid;gap:2.2rem}
+.sample{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1.6rem;align-items:start}
+.sample img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--rule);box-shadow:0 1px 0 var(--rule),0 10px 24px -14px rgba(28,35,51,.35)}
+.sample h4{margin:0;font-size:1.45rem;font-weight:600;letter-spacing:-.01em}
+.sample .meta{margin:.1rem 0 .6rem;color:var(--ink-3);font-size:.95rem;font-style:italic}
+.sample p{margin:0;font-size:1.1rem}
+.sample .st{display:inline-block;margin-top:.5rem;font-size:.92rem;color:var(--pencil);font-style:italic}
+
+.photo{width:7.5rem;aspect-ratio:1;border-radius:50%;border:1.5px dashed var(--ink-3);display:grid;place-items:center;font-size:.8rem;color:var(--ink-3);text-align:center;margin-bottom:1rem}
+
+footer{max-width:58rem;margin:0 auto;padding:1.5rem clamp(1.25rem,4vw,3rem) 3rem;border-top:1px solid var(--ink);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.95rem;color:var(--ink-3)}
+footer nav{display:flex;gap:1.1rem;flex-wrap:wrap}
+footer a{color:var(--ink-2)}
+
+@media (max-width:860px){
+  body{font-size:1.15rem}
+  .row{grid-template-columns:minmax(0,1fr)}
+  .row > *,.row > .note{grid-column:1;grid-row:auto}
+  .row > .note{justify-self:start;text-align:left;max-width:none;margin:0 0 .4rem}
+  .row > .note::after{content:""}
+  .row > .note::before{content:"⟶ ";font-style:normal}
+  .place{text-align:left}
+  .sample{grid-template-columns:5.5rem minmax(0,1fr);gap:1.1rem}
+  th{width:auto}
+}
+</style>
+</head>
+<body>
+<main class="letter">
+
+  <div class="row">
+    <header class="head">
+      <div class="from"><b>Bernhard Slatinsek</b>Webseiten &amp; iPhone-Apps<br>Graz</div>
+      <nav aria-label="Hauptnavigation"><a href="#preise">Preise</a><a href="#arbeiten">Arbeitsproben</a><a href="#kontakt">Kontakt</a></nav>
+    </header>
+  </div>
+
+  <div class="row"><p class="place">Graz, im November 2026</p></div>
+
+  <div class="row">
+    <h1 class="subject">Ihre neue Webseite. <span>Oder Ihre App.</span></h1>
+  </div>
+
+  <div class="row"><p>Guten Tag,</p></div>
+
+  <div class="row">
+    <p>ich heiße Bernhard Slatinsek und baue Webseiten und Apps, und zwar für Betriebe, Praxen, Vereine und alle, die etwas Ordentliches im Netz brauchen, aber keine Agentur.</p>
+  </div>
+
+  <div class="row">
+    <aside class="note">Das ist der eigentliche Unterschied</aside>
+    <p>Ich arbeite allein. Sie haben also von der ersten Idee bis zur fertigen Seite <span class="u">denselben Ansprechpartner</span>, nämlich den, der sie auch baut. Wenn etwas unklar ist, rufen Sie an und reden direkt mit mir.</p>
+  </div>
+
+  <div class="row">
+    <p>Eine Webseite von mir lädt schnell, ist am Handy gut lesbar und liegt auf Ihrer eigenen Domain. Öffnungszeiten, Termine oder Neuigkeiten können Sie auf Wunsch selbst ändern. Wenn eine Webseite nicht reicht, baue ich Apps für iPhone und iPad, auf Wunsch auch für Android, und begleite Sie bis zur Freigabe im App Store.</p>
+  </div>
+
+  <div class="row">
+    <aside class="note">bewusst weggelassen</aside>
+    <div>
+      <p>Ein paar Dinge bekommen Sie bei mir nicht:</p>
+      <ul class="plain">
+        <li><s>einen Cookie-Banner</s>, weil Ihre Seite niemanden verfolgt,</li>
+        <li><s>ein Baukasten-Abo</s>, denn Seite, Domain und Dateien gehören Ihnen,</li>
+        <li><s>Stockfotos</s> von lachenden Menschen vor Laptops,</li>
+        <li><s>Kleingedrucktes</s>, denn ein Fixpreis ist ein Fixpreis.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <aside class="note">kostenlos, eine halbe Stunde</aside>
+    <p>Der Ablauf ist einfach. Wir reden zuerst, am Telefon oder bei einem Kaffee in Graz. Danach bekommen Sie ein <span class="u">schriftliches Angebot mit Fixpreis</span>. Den Entwurf sehen Sie als echte Seite im Browser und nicht als PDF. Zwei Korrekturrunden sind dabei, und beim Text helfe ich Ihnen. Zum Schluss stelle ich alles online, richte Domain und E-Mail ein und zeige Ihnen, wie Sie Kleinigkeiten selbst ändern.</p>
+  </div>
+
+  <div class="row">
+    <p>Was das ungefähr kostet, finden Sie in <a href="#preise">Anlage&nbsp;1</a>. Was ich bisher gebaut habe, zeigt <a href="#arbeiten">Anlage&nbsp;2</a>. Schreiben Sie mir einfach, was Sie vorhaben, zwei, drei Sätze reichen: <a href="mailto:hallo@nbsystems.dev">hallo@nbsystems.dev</a>. Sie hören innerhalb von zwei Werktagen von mir.</p>
+  </div>
+
+  <div class="row">
+    <div class="sign">
+      <p>Mit freundlichen Grüßen aus Graz</p>
+      <p class="name">Bernhard Slatinsek</p>
+      <small><span class="todo">[hier später deine echte Unterschrift als Scan]</span></small>
+    </div>
+  </div>
+
+  <div class="row">
+    <aside class="note">für die ersten drei</aside>
+    <p class="ps"><b>PS:</b> Meine ersten Kundenseiten entstehen gerade. Die ersten drei Webseiten mache ich deshalb 20&nbsp;% günstiger, und im Gegenzug darf ich sie hier zeigen.</p>
+  </div>
+
+  <!-- Anlage 1 -->
+  <section class="annex" id="preise">
+    <div class="row">
+      <div>
+        <h2>Anlage 1</h2>
+        <h3>Richtpreise</h3>
+        <table>
+          <tr><th>Vereinsseite<small>Verein vorstellen, Termine, Mitglied werden, Kontakt</small></th><td class="p"><small>ab</small> 490 €</td></tr>
+          <tr><th>Visitenkarte<small>Eine Seite: wer Sie sind, was Sie anbieten, wie man Sie erreicht</small></th><td class="p"><small>ab</small> 790 €</td></tr>
+          <tr><th>Betriebsseite<small>Bis zu sechs Unterseiten, etwa Leistungen, Team, Anfahrt</small></th><td class="p"><small>ab</small> 1.690 €</td></tr>
+          <tr><th>iPhone-App<small>Eine App mit einem klaren Zweck, größere Vorhaben in Etappen</small></th><td class="p"><small>ab</small> 4.900 €</td></tr>
+          <tr><th>Betreuung<small>Hosting, Updates, Sicherung, kleine Änderungen, monatlich kündbar</small></th><td class="p"><small>ab</small> 19 € <small>/ Monat</small></td></tr>
+        </table>
+        <p class="fine">Den genauen Fixpreis bekommen Sie nach dem Gespräch schriftlich. <span class="todo">[Hinweis zur Umsatzsteuer, sobald das Gewerbe angemeldet ist]</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Anlage 2 -->
+  <section class="annex" id="arbeiten">
+    <div class="row">
+      <aside class="note">alle drei selbst entworfen und gebaut</aside>
+      <div>
+        <h2>Anlage 2</h2>
+        <h3>Arbeitsproben</h3>
+        <div class="samples">
+          <article class="sample">
+            <img src="img/sudoku-hint.webp" width="640" height="1385" alt="Sudoku Klar: Der Tipp erklärt den nächsten logischen Schritt.">
+            <div>
+              <h4>Sudoku Klar</h4>
+              <p class="meta">iPhone, 2026</p>
+              <p>Sudoku, kostenlos und ohne Werbung. Statt die Lösung zu verraten, erklärt die App den nächsten logischen Schritt mit zwölf Lösungstechniken. Dazu Tagesrätsel und Statistik, auf Deutsch und Englisch.</p>
+              <span class="st">bei Apple in Prüfung</span>
+            </div>
+          </article>
+          <article class="sample">
+            <img src="img/kompass-diary.webp" width="640" height="1422" alt="Kompass: Tagebuch mit Symptomen und Vitalwerten.">
+            <div>
+              <h4>Kompass</h4>
+              <p class="meta">iPhone und Android, mit palliativkompass.at, 2026</p>
+              <p>Ein ruhiger Begleiter für Angehörige, die einen schwer kranken Menschen zu Hause pflegen. Mit Fachbeiträgen, die auch offline verfügbar sind, und einem Tagebuch für Symptome, Medikamente und Termine. Alle Einträge bleiben auf dem Gerät.</p>
+              <span class="st">Beta, Einreichung läuft</span>
+            </div>
+          </article>
+          <article class="sample">
+            <img src="img/schicht-monat.webp" width="640" height="1138" alt="Schichtpilot: Monatsplan mit Diensten.">
+            <div>
+              <h4>Schichtpilot</h4>
+              <p class="meta">iPhone und Android, 2026</p>
+              <p>Dienstplan für alle, die in Schichten arbeiten. Mit Monatsplan, Stunden und Dienstvorlagen, und Gruppen teilen ihre Pläne über Einladungslinks. Die Cloud ist optional.</p>
+              <span class="st">offene Beta</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Über mich / Kontakt -->
+  <section class="annex" id="kontakt">
+    <div class="row">
+      <div>
+        <h2>Anlage 3</h2>
+        <h3>Zur Person und Kontakt</h3>
+        <div class="photo">Foto folgt</div>
+        <p><span class="todo">[Ein, zwei Sätze zu dir: was du beruflich machst oder gemacht hast und wie du zum Programmieren gekommen bist.]</span></p>
+        <p>Meine Apps baue ich so, wie ich sie selbst gern hätte: ruhig, ohne Werbung und mit möglichst wenig Daten, die das Gerät verlassen.</p>
+        <p>E-Mail: <a href="mailto:hallo@nbsystems.dev">hallo@nbsystems.dev</a><br>Telefon: <span class="todo">[Nummer]</span><br>In Graz und Umgebung gern persönlich, sonst per Telefon oder Video.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer>
+  <span>Bernhard Slatinsek · Graz</span>
+  <nav aria-label="Rechtliches und App-Seiten"><a href="#">Impressum</a><a href="#">Datenschutz</a><a href="../../docs/sudoku/support.de/">Sudoku Klar</a><a href="../../docs/kompass/support.de/">Kompass</a><a href="../../docs/schichtpilot/support.de/">Schichtpilot</a></nav>
+</footer>
+</body>
+</html>
